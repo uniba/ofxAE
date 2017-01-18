@@ -42,10 +42,18 @@ LayerType : {
 
 getLayerType : function(layer)
 {
-	if(!layer.source.useProxy && layer.source instanceof CompItem) {
-		return this.LayerType.COMPOSITION;
-	}
-	var s = layer.source.useProxy ? layer.source.proxySource : layer.source.mainSource;
+	var _source = layer.source;
+  if (_source) {
+      if(!_source.useProxy && _source instanceof CompItem) {
+          return this.LayerType.COMPOSITION;
+      }
+  }
+
+	var s = undefined;
+  if (_source) {
+    s = _source.useProxy ? _source.proxySource : _source.mainSource;
+  }
+  
 	if(s) {
 		if(s instanceof FileSource) {
 			if(s.isStill) {
