@@ -3,6 +3,9 @@
 #include "ofxAELayer.h"
 #include "ofAppRunner.h"
 #include "ofxAEComposition.h"
+#ifdef TARGET_LINUX
+    #include "ofGstVideoPlayer.h"
+#endif
 
 OFX_AE_NAMESPACE_BEGIN
 
@@ -23,6 +26,9 @@ MovieCap::MovieCap(AVLayer *layer)
 
 void MovieCap::loadMovie(const string& filepath)
 {
+    #ifdef TARGET_LINUX
+        movie_.setPlayer(ofPtr<ofBaseVideoPlayer>(new ofGstVideoPlayer));
+    #endif
 	movie_.setPixelFormat(OF_PIXELS_RGBA);
     movie_.load(filepath);
 	movie_.setLoopState(OF_LOOP_NONE);
