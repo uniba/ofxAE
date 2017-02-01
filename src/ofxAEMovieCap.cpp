@@ -31,9 +31,10 @@ void MovieCap::loadMovie(const string& filepath)
 void MovieCap::setActive(bool active)
 {
 	active = use_audio_&&active;
-	if(active != movie_.isPlaying()) {
-		active?movie_.play():movie_.stop();
-	}
+//	if(active != movie_.isPlaying()) {
+//		active?movie_.play():movie_.stop();
+//	}
+    movie_.play();
 }
 
 void MovieCap::setUseAudio(bool use_audio)
@@ -45,20 +46,20 @@ void MovieCap::setUseAudio(bool use_audio)
 void MovieCap::update()
 {
 	if(comp_) {
-		float movie_position, app_position;
-		if(comp_->isBackward()) {
-			movie_.setSpeed(-comp_->getSpeed());
-			movie_position = movie_.getPosition()*movie_.getDuration();
-			app_position = movie_.getDuration()-layer_->getFrame()/comp_->getFrameRate();
-		}
-		else {
-			movie_.setSpeed(comp_->getSpeed());
-			movie_position = movie_.getPosition()*movie_.getDuration();
-			app_position = layer_->getFrame()/comp_->getFrameRate();
-		}
-		if(!use_audio_ || abs(app_position-movie_position) > abs(comp_->getSpeed()*lazy_seconds_)) {
-			movie_.setPosition(app_position/movie_.getDuration());
-		}
+//		float movie_position, app_position;
+//		if(comp_->isBackward()) {
+//			movie_.setSpeed(-comp_->getSpeed());
+//			movie_position = movie_.getPosition()*movie_.getDuration();
+//			app_position = movie_.getDuration()-layer_->getFrame()/comp_->getFrameRate();
+//		}
+//		else {
+//			movie_.setSpeed(comp_->getSpeed());
+//			movie_position = movie_.getPosition()*movie_.getDuration();
+//			app_position = layer_->getFrame()/comp_->getFrameRate();
+//		}
+//		if(!use_audio_ || abs(app_position-movie_position) > abs(comp_->getSpeed()*lazy_seconds_)) {
+//			movie_.setPosition(app_position/movie_.getDuration());
+//		}
 	}
 	movie_.update();
 }
