@@ -25,6 +25,7 @@ void MovieCap::loadMovie(const string& filepath)
 {
 	movie_.load(filepath);
 	movie_.setLoopState(OF_LOOP_NONE);
+    movie_.setPixelFormat(OF_PIXELS_BGRA);
 	frame_rate_ = movie_.getTotalNumFrames()/movie_.getDuration();
 }
 
