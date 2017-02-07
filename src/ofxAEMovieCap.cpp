@@ -66,9 +66,15 @@ void MovieCap::update()
 			app_position = layer_->getFrame()/comp_->getFrameRate();
 		}
 		if(!use_audio_ || abs(app_position-movie_position) > abs(comp_->getSpeed()*lazy_seconds_)) {
+            #ifdef TARGET_LINUX
+                movie_.play();
+            #endif
 			movie_.setPosition(app_position/movie_.getDuration());
 		}
 	}
+    #ifdef TARGET_LINUX
+        ofSleepMillis(10);
+    #endif
 	movie_.update();
 }
 
