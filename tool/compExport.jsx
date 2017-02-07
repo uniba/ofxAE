@@ -54,9 +54,12 @@ function proc(comp)
 			obj.blendingMode = ExportUtil.getDrawMode(l.blendingMode);
 		}
 		obj.layerType = ExportUtil.getLayerType(l);
-		var source = l.source.useProxy ? l.source.proxySource : l.source.mainSource;
-		var source_name = l.source.name;
-		if(l.source) {
+		var source, source_name;
+		if (l.source) {
+		  source = l.source.useProxy ? l.source.proxySource : l.source.mainSource;
+		  source_name = l.source.name;
+		}
+		if (l.source) {
 			obj.sourceDirectory = getItemFolder(l.source);
 		}
 		// type specific
