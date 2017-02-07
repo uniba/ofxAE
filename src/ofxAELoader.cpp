@@ -255,6 +255,7 @@ void Loader::setupAVLayerJson(AVLayer& layer, const Json::Value& json)
 	if(blend_mode == "none")		{ layer.blend_mode_ = OF_BLENDMODE_ALPHA; }
 	if(blend_mode == "add")			{ layer.blend_mode_ = OF_BLENDMODE_ADD; }
 	if(blend_mode == "subtract")	{ layer.blend_mode_ = OF_BLENDMODE_SUBTRACT; }
+	if(blend_mode == "screen")	    { layer.blend_mode_ = OF_BLENDMODE_SCREEN; }
 	setupLayerJson(layer, json);
 	const Json::Value& masks = properties.get("mask", Json::Value::null);
 	if(masks.isArray()) {
